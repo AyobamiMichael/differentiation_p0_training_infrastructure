@@ -1,0 +1,31 @@
+python run_p0.py --mode train --model m1 --weight-decay 0.3 --train-seed 3 4 5 6 7 8 9 --epochs 600 --checkpoint-every 10 --save-checkpoints --skip-existing --steps-per-sec 50
+7 run(s); ~4887 examples/epoch -> 23400 optimizer steps/run; estimate 0.9 h total at 50 steps/s
+split (task 0, split 0): {'train_pairs': 181, 'val_pairs': 25, 'test_pairs': 50, 'train_unique_functions': 152, 'val_unique_functions': 22, 'test_unique_functions': 43, 'min_train_pairs_as_first': 8, 'min_train_pairs_as_second': 9, 'min_slot_coverage_required': 8}
+
+
+FINAL train 1.0000 id 1.0000 val 1.0000 test 0.9994 | test per-function mean 0.9993 (43/43 solved, 0 near chance) | test CE 0.003 ECE 0.001
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+FINAL train 1.0000 id 1.0000 val 1.0000 test 1.0000 | test per-function mean 1.0000 (43/43 solved, 0 near chance) | test CE 0.000 ECE 0.000
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+
+
+FINAL train 1.0000 id 0.9978 val 1.0000 test 0.9994 | test per-function mean 0.9993 (43/43 solved, 0 near chance) | test CE 0.008 ECE 0.006
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+
+FINAL train 1.0000 id 0.8066 val 0.8400 test 0.8481 | test per-function mean 0.8616 (18/43 solved, 0 near chance) | test CE 0.670 ECE 0.046
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+
+ FINAL train 1.0000 id 1.0000 val 1.0000 test 1.0000 | test per-function mean 1.0000 (43/43 solved, 0 near chance) | test CE 0.000 ECE 0.000
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+
+FINAL train 1.0000 id 1.0000 val 1.0000 test 0.9981 | test per-function mean 0.9978 (43/43 solved, 0 near chance) | test CE 0.006 ECE 0.002
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031
+
+
+ FINAL train 1.0000 id 0.9171 val 0.9587 test 0.9688 | test per-function mean 0.9757 (40/43 solved, 0 near chance) | test CE 0.125 ECE 0.013
+  baselines(test): rectangle full=1.000 matched=1.000 shortcut max=0.037 chance=0.031

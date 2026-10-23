@@ -39,14 +39,18 @@ functions are OOD.
 ```bash
 python run_p0.py --mode smoke                                    # 3 epochs
 python run_p0.py --mode sweep --estimate-only                    # prints run count / hours before you commit
-# Stage 1: does m1 learn composition at all? (6 runs)
-python run_p0.py --mode sweep --models m1 --weight-decay 0 0.01 --train-seed 0 1 2 --split-seed 0 \
-                 --condition fixed --epochs 600 --save-checkpoints --skip-existing
-python summarize.py --runs runs --out runs/summary.csv
-# Stage 2: add depth (m2, m3), then split seeds 1 2, then the shift conditions
-python run_p0.py --mode sweep --models m1 m2 m3 --weight-decay 0 0.01 --train-seed 0 1 2 --split-seed 0 1 2 --condition fixed
-python run_p0.py --mode sweep --models m1 --weight-decay 0 0.01 --train-seed 0 1 2 --condition changing --shift-epoch 300
+python run_p0.py --mode sweep --models m1 --weight-decay 0.1 0.3 1.0 --train-seed 0 1 2 --epochs 600 --save-checkpoints --skip-existing --steps-per-sec 50
+
+python run_p0.py --mode train --epochs 60 --id-holdout 0 --warmup-steps 0 --min-lr-ratio 1.0 --weight-decay 0 --eval-every 1 --train-seed 0 1 2 3 4 --outdir runs_diag_a
+python run_p0.py --mode train --epochs 60 --id-holdout 0 --warmup-steps 0 --min-lr-ratio 1.0 --weight-decay 0 --eval-every 1 --val-fraction 0.01 --train-seed 0 1 2 3 4 --outdir runs_diag_b
+
+python run_p0.py --mode train --model m1 --weight-decay 0.3 --train-seed 3 4 5 6 7 8 9 --epochs 600 --checkpoint-every 10 --save-checkpoints --skip-existing --steps-per-sec 50
+
+
 ```
+ 
+Weight Decay: 0.3 best learning perfomance accross training seed 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 at 600 epochs
+
 Defaults: 600 epochs (~23k optimizer steps at batch 128), AdamW lr 1e-3, 200 warmup steps, cosine to 0.1x, grad clip 1.0,
 weight decay on matrices/embeddings only. `--skip-existing` makes sweeps resumable.
 
